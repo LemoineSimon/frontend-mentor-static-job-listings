@@ -1,0 +1,65 @@
+.filter {
+  @include reset-button;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: $font-family;
+  color: $primary;
+  background-color: $filter-bg-color;
+  border-radius: .5rem;
+  margin: 1rem 1rem 1rem 0;
+  display: inline-flex;
+  overflow: hidden;
+
+
+  @include medium {
+    margin-right: 0;
+  }
+}
+
+.filter__label {
+  padding: .8em .75em .6em;
+  display: block;
+}
+
+.filter__remove {
+  @include reset-button;
+  line-height: 1;
+  background: $primary;
+  cursor: pointer;
+  padding: 0 .75em;
+  transition: background-color .1s linear;
+
+  &:hover, &:focus {
+    background: $very-dark-gray-cian;
+  }
+}
+
+.filter__clear {
+  @include reset-button;
+  color: $primary;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: $font-family;
+  padding: .8em .75em .6em;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
+
+.filter + .filter {
+  @include medium {
+    margin-left: 1rem;
+  }
+}
+
+button.filter {
+  cursor: pointer;
+  transition: color .1s linear, background-color .1s linear;
+
+  &.filter--active, &:hover, &:focus {
+    color: white;
+    background-color: $primary;
+  }
+}

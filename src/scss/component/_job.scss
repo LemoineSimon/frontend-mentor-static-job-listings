@@ -1,0 +1,114 @@
+.job {
+  padding: 0 $component-mobile-padding-x 2rem;
+  @include medium {
+    padding: 3rem $component-desktop-padding-x;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.job__compagnie {
+  font-weight: bold;
+  color: $primary;
+  font-size: 1.3rem;
+  @include medium {
+    font-size: 1.4rem;
+  }
+}
+
+.job__compagnie-logo {
+  @include square(4.8rem);
+  @include medium-down {
+    margin-top: calc(4.8rem / -2);
+  }
+  @include medium {
+    @include square(9rem);
+  }
+}
+
+.job__body {
+  flex-grow: 1;
+}
+
+.job__title {
+  color: $very-dark-gray-cian;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color .1s linear;
+
+  &:hover, &:focus {
+    color: $primary
+  }
+
+  @include medium {
+    font-size: 1.8rem;
+  }
+}
+
+.job__info {
+  color: $primary;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: -.05em;
+  @include medium {
+    font-size: 1.6rem;
+  }
+}
+
+.job__info-item + .job__info-item {
+  &:before {
+    content: "•";
+    margin: 0 .5rem;
+    @include medium {
+      margin: 0 1.4rem;
+    }
+  }
+}
+
+.job__tag {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  background-color: $very-dark-gray-cian;
+  padding: .75em .75em .4em;
+  border-radius: 1.5rem;
+  display: inline-block;
+}
+
+.job__tag + .job__tag {
+  margin-left: 1rem;
+}
+
+.job__tag--new {
+  background-color: $primary;
+}
+
+.job__filter-list {
+  @include medium-down {
+    border-top: 1px solid $primary;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+  }
+}
+
+.job--featured {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 100%;
+    background-color: $primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: .5rem 0 0 .5rem;
+  }
+}
+
+.job + .job {
+  margin-top: 2rem;
+}

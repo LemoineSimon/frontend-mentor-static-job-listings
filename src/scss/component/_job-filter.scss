@@ -1,0 +1,30 @@
+.job-filter {
+  padding: #{$component-mobile-padding-x/2} $component-mobile-padding-x;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include medium {
+    padding: #{$component-mobile-padding-x/2} $component-desktop-padding-x;
+  }
+}
+
+.job-filter__clear {
+  @include reset-button;
+  color: $primary;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: $font-family;
+}
+
+.job-filter.open-leave-to, .job-filter.open-enter {
+  display: block;
+  transform: scaleY(0);
+}
+
+.job-filter.open-enter-active, .job-filter.open-leave-active {
+  transition: transform .15s;
+}
+
+.job-filter.open-enter-to, .job-filter.open-leave {
+  transform: scaleY(1);
+}
