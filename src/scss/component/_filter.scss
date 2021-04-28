@@ -42,6 +42,7 @@
   font-family: $font-family;
   padding: .8em .75em .6em;
   cursor: pointer;
+  background: none;
 
   &:hover, &:focus {
     text-decoration: underline;

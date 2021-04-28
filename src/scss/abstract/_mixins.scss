@@ -1,0 +1,42 @@
+@mixin sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+// Line-height crop
+@mixin lhCrop($line-height, $capital-letter: 1) {
+  &::before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    margin-top: calc((#{$capital-letter} - #{$line-height}) * 0.5em);
+  }
+}
+
+@mixin square($width, $height:$width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin theme-transition($properties) {
+  transition-property: $properties;
+  transition-duration: var(--theme-transition);
+  transition-timing-function: ease-in-out;
+}
+
+@mixin reset-button() {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  appearance: none;
+}

@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- displays site properly based on user's device -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-    <link rel="stylesheet" href="./dist/app.css">
-    <link href="https://fonts.googleapis.com/css?family=Spartan:500,700&display=swap" rel="stylesheet">
-    <title>Frontend Mentor | Job Listings</title>
-</head>
-<body>
-<main id="app">
-    <div class="wrapper">
-        <transition name="open">
-            <div class="card job-filter mb-5" v-show="showFilters">
-                <div>
-                    <template v-for="(filterList,type) in filters">
-                        <div class="filter" v-for="filter in filterList" :key="filter">
-                            <span class="filter__label">{{filter}}</span>
-                            <button class="filter__remove" @click="clearFilter(type,filter)">
-                                <span class="sr-only">Remove</span>
-                                <img src="./images/icon-remove.svg" alt="">
-                            </button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- displays site properly based on user's device -->
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+        <link rel="stylesheet" href="./dist/app.css">
+        <link href="https://fonts.googleapis.com/css?family=Spartan:500,700&display=swap" rel="stylesheet">
+        <title>Frontend Mentor | Job Listings</title>
+    </head>
+    <body>
+        <main id="app">
+            <div class="wrapper">
+                <transition name="open">
+                    <div class="card job-filter mb-5" v-show="showFilters">
+                        <div>
+                            <template v-for="(filterList,type) in filters">
+                                <div class="filter" v-for="filter in filterList" :key="filter">
+                                    <span class="filter__label">{{ filter }}</span>
+                                    <button class="filter__remove" @click="clearFilter(type,filter)">
+                                        <span class="sr-only">Remove</span>
+                                        <img src="./images/icon-remove.svg" alt="">
+                                    </button>
+                                </div>
+                            </template>
                         </div>
-                    </template>
+                        <button class="filter__clear" @click="clearAllFilters()">Clear</button>
+                    </div>
+                </transition>
+                <div class="card job" :class="{'job--featured': job.featured}" v-for="job in getJobs()" :key="job.id">
+                    <img :src="job.logo" class="job__compagnie-logo" alt="">
+                    <div class="job__body md:ml-3 flex flex-column align-items-start">
+                        <div class="flex align-items-center">
+                            <div class="job__compagnie mr-3">{{ job.company }}</div>
+                            <div v-show="job.new" class="job__tag job__tag--new">New!</div>
+                            <div v-show="job.featured" class="job__tag">Featured</div>
+                        </div>
+                        <a class="job__title mt-2 mb-2" href="">{{ job.position }}</a>
+                        <ul class="job__info mt-1">
+                            <li class="job__info-item">
+                                <time>{{ job.postedAt }}</time>
+                            </li>
+                            <li class="job__info-item">
+                                <span>{{ job.contract }}</span>
+                            </li>
+                            <li class="job__info-item">
+                                <span>{{ job.location }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="job__filter-list">
+                        <button class="filter" :class="{'filter--active':isFilterActive('role',job.role)}"
+                                @click="addFilter('role',job.role)">
+                            <span class="filter__label">{{ job.role }}</span>
+                        </button>
+                        <button class="filter" :class="{'filter--active':isFilterActive('level',job.level)}"
+                                @click="addFilter('level',job.level)">
+                            <span class="filter__label">{{ job.level }}</span>
+                        </button>
+                        <template v-for="language in job.languages">
+                            <button class="filter" :class="{'filter--active':isFilterActive('languages',language)}"
+                                    @click="addFilter('languages',language)">
+                                <span class="filter__label">{{ language }}</span>
+                            </button>
+                        </template>
+                    </div>
                 </div>
-                <button class="filter__clear" @click="clearAllFilters()">Clear</button>
             </div>
-        </transition>
-        <div class="card job" :class="{'job--featured': job.featured}" v-for="job in getJobs()" :key="job.id">
-            <img :src="job.logo" class="job__compagnie-logo" alt="">
-            <div class="job__body md:ml-3 flex flex-column align-items-start">
-                <div class="flex align-items-center">
-                    <div class="job__compagnie mr-3">{{ job.company }}</div>
-                    <div v-show="job.new" class="job__tag job__tag--new">New!</div>
-                    <div v-show="job.featured" class="job__tag">Featured</div>
-                </div>
-                <a class="job__title mt-2 mb-2" href="">{{ job.position }}</a>
-                <ul class="job__info mt-1">
-                    <li class="job__info-item">
-                        <time>{{ job.postedAt }}</time>
-                    </li>
-                    <li class="job__info-item">
-                        <span>{{ job.contract }}</span>
-                    </li>
-                    <li class="job__info-item">
-                        <span>{{ job.location }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="job__filter-list">
-                <button class="filter" :class="{'filter--active':isFilterActive('role',job.role)}"
-                        @click="addFilter('role',job.role)">
-                    <span class="filter__label">{{job.role}}</span>
-                </button>
-                <button class="filter" :class="{'filter--active':isFilterActive('level',job.level)}"
-                        @click="addFilter('level',job.level)">
-                    <span class="filter__label">{{job.level}}</span>
-                </button>
-                <template v-for="language in job.languages">
-                    <button class="filter" :class="{'filter--active':isFilterActive('languages',language)}"
-                            @click="addFilter('languages',language)">
-                        <span class="filter__label">{{language}}</span>
-                    </button>
-                </template>
-            </div>
-        </div>
-    </div>
-</main>
-<footer>
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-    Coded by <a href="https://github.com/LemoineSimon" target="_blank">Simon</a>.
-</footer>
-<script src="./dist/js/app.bundle.js"></script>
-</body>
+        </main>
+        <footer>
+            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+            Coded by <a href="https://github.com/LemoineSimon" target="_blank">Simon</a>.
+        </footer>
+        <script src="./dist/js/app.bundle.js"></script>
+    </body>
 </html>

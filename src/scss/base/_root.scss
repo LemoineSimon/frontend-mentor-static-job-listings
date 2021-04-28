@@ -1,0 +1,39 @@
+@mixin themelight {
+  --text-color: hsl(228, 12%, 44%);
+  --text-color-accent: hsl(230, 17%, 14%);
+  --title-color: var(--text-color);
+  --body-bg: white;
+  --card-bg: hsl(227, 47%, 96%);
+  --card-bg-accent: hsl(232, 33%, 91%);
+  --body-bg-accent: hsl(225, 100%, 98%);
+}
+
+@mixin themedark {
+  --text-color: hsl(228, 34%, 66%);
+  --text-color-accent: hsl(0, 0%, 100%);
+  --title-color: var(--text-color-accent);
+  --body-bg: hsl(230, 17%, 14%);
+  --card-bg: hsl(228, 28%, 20%);
+  --card-bg-accent: hsl(228, 26%, 27%);
+  --body-bg-accent: hsl(232, 19%, 15%);
+}
+
+:root {
+  @include themelight;
+  --header-offset: 5rem;
+  --theme-transition: 0;
+  @include medium {
+    --header-offset: 15.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    @include themedark;
+  }
+}
+
+[data-theme="dark"] {
+  @include themedark;
+}
+
+[data-theme="light"] {
+  @include themelight;
+}

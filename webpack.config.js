@@ -8,7 +8,7 @@ module.exports = {
     },
     output: {
         filename: 'js/[name].bundle.js',
-        path: path.resolve(__dirname, './dist')
+        path: path.resolve(__dirname, './dist'),
     },
     resolve: {
         alias: {
@@ -45,6 +45,9 @@ module.exports = {
         contentBase: __dirname,
         compress: true,
         port: 7000,
+        watchOptions: {
+            poll: true,
+        },
     },
     plugins: [
         new MiniCssExtractPlugin({

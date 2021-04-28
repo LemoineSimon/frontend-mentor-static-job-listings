@@ -1,3 +1,32 @@
+/**
+ * Breakpoints
+ */
+$tiny-screen: 20em !default;
+$tiny-plus-screen: 30em !default;
+$small-screen: 40em !default;
+$small-plus-screen: 48em !default;
+$medium-screen: 60em !default;
+$medium-plus-screen: 64em !default;
+$large-screen: 80em !default;
+$large-plus-screen: 90em !default;
+$extra-large-screen: 100em !default;
+$ultra-large-screen: 120em !default;
+$ultima-large-screen: 160em !default;
+
+/**
+ * Main prefixes breakpoints
+ */
+$prefixes-mq: '' $tiny-screen, 'sm' $small-screen, 'md' $medium-screen, 'lg' $large-screen, 'xl' $extra-large-screen !default;
+
+$columns-number: 12 !default;
+
+$gutters: 3rem !default;
+
+$border-radius: 6px !default;
+
+$space-unit: .5rem;
+$spacing-steps: "0" 0, "1" $space-unit, "2" $space-unit*2, "3" $space-unit*3, "4" $space-unit*6, "5" $space-unit*10;
+
 $font-family: "Spartan", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
 
 $component-mobile-padding-x: 2.4rem;

@@ -1,0 +1,57 @@
+$spacing-list: 'p' 'padding', 'm' 'margin';
+$directions: '' '', 't' '-top', 'l' '-left', 'r' '-right', 'b' '-bottom';
+@each $spacing-prefix, $spacing in $spacing-list {
+  @each $mq, $value in ($prefixes-mq) {
+    @each $d-prefix, $direction in ($directions) {
+      @each $key, $space in ($spacing-steps) {
+        $scope: #{$mq}#{"\\:"};
+        @if $mq == '' {
+          $scope: '';
+          .#{$scope}#{$spacing-prefix}#{$d-prefix}-#{$key} {
+            #{$spacing}#{$direction}: #{$space};
+          }
+        } @else {
+          @include mq($value) {
+            .#{$scope}#{$spacing-prefix}#{$d-prefix}-#{$key} {
+              #{$spacing}#{$direction}: #{$space};
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $mq, $value in ($prefixes-mq) {
+  $scope: #{$mq}#{"\\:"};
+  @if $mq == '' {
+    $scope: '';
+    .#{$scope}mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .#{$scope}ml-auto {
+      margin-left: auto;
+    }
+    .#{$scope}mr-auto {
+      margin-right: auto;
+    }
+  } @else {
+    @include mq($value) {
+      .#{$scope}mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .#{$scope}ml-auto {
+        margin-left: auto;
+      }
+      .#{$scope}mr-auto {
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.px-safe {
+  padding: 0 var(--safe-space);
+}
